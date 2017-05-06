@@ -28,8 +28,9 @@ def random_subset(r, A):
     for j in reversed(range(N - r, N)):  # Note the change in the range
         i = int(j * random())
         A[j], A[i] = A[i], A[j]
-    return A[:r]  # Return the subset
+    return A[-r:]  # Return the subset
 
 
 if __name__ == '__main__':
-    pass
+    print(random_permutation(list(range(20))))
+    print(random_subset(5, list(range(20))))
