@@ -130,4 +130,21 @@ def random_binomial(n, p):
 
 
 if __name__ == '__main__':
-    pass
+    def mean(g, N=10000):
+        return sum([g() for _ in range(N)]) / N
+
+    print("\nUniform U(0, 10)")
+    print(mean(lambda: uniform_discrete(0, 10)))
+
+    print("\nrandom_geometric(0.5) mean:")
+    print(mean(lambda: random_geometric(0.5)))
+
+    print("\nbernoulli mean 0.5:")
+    print(mean(lambda: random_bernoulli(0.5)))
+
+    print("\nbernoulli batch 0.8:")
+    xs = random_bernoulli_batch(0.8, 1000)
+    print(sum(xs) / len(xs))
+
+    print('\npoisson mean 312')
+    print(mean(lambda: poisson(312)))
