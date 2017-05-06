@@ -110,6 +110,41 @@ def poisson(lambda_):
 
     return i
 
+def poisson_acum(lam, j):
+    """
+    Probabilidad acumulada de la Poisson para int(lambda)
+    """
+    prob = exp(- lam)
+    F = prob
+    for i in range(1, j + 1):
+        prob *= (lam / i)
+        F += prob
+    return prob, F
+
+
+def poisson_optimized(lam):
+    """
+    Función de distribucion de probabilidad de Poisson optimizada.
+    """
+    value = int(lam)
+    # Calculamos la F(I)
+    prob, F = poisson_acum(lam, value)
+    u = random()
+    if u >= F:
+        # Generar X haciendo búsqueda ascendente
+        while u >= F:
+            value += 1
+            prob *= lam / value
+            F += prob
+        return value - 1  # Devuelve el valor anterior
+    else:
+        # Generar X haciendo búsqueda descendente
+        while u < F:
+            F -= prob
+            prob *= value / lam
+            value -= 1
+        return value  # Ejecuta hasta el valor a generar
+
 
 def random_binomial(n, p):
     """Get a random number with binomial distribution.
@@ -148,3 +183,9 @@ if __name__ == '__main__':
 
     print('\npoisson mean 312')
     print(mean(lambda: poisson(312)))
+
+    print('\npoisson optimized mean 312')
+    print(mean(lambda: poisson_optimized(312)))
+
+    print('\nBinomial ')
+    print(mean(lambda: random_binomial(100, 0.7)))
