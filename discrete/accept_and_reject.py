@@ -1,4 +1,6 @@
 from random import random
+from inverse_transform import sort_by_probability
+from discretes import uniform_discrete
 
 
 def accept_and_reject(Y_random, c, p, q):
@@ -31,4 +33,18 @@ def accept_and_reject(Y_random, c, p, q):
 
 
 if __name__ == '__main__':
-    pass
+    def mean(g, N=100000):
+        return sum([g() for _ in range(N)]) / N
+
+    p_arr = [0.11, 0.12, 0.09, 0.08, 0.12,
+             0.10, 0.09, 0.09, 0.10, 0.10]
+    q_arr = [0.1] * 10
+    c = 1.2
+
+    def p(i): return p_arr[i - 1]
+
+    def q(i): return q_arr[i - 1]
+
+    def Y_random(): return uniform_discrete(1, 10)
+
+    print(mean(lambda: accept_and_reject(Y_random, c, p, q)))
