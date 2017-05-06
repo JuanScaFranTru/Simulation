@@ -1,6 +1,7 @@
 from random import random
 from math import exp
 
+
 def aprox_sum(g, N, niter=100):
     """Aproximate the sum of g(i) for i in the interval [1, N].
 
