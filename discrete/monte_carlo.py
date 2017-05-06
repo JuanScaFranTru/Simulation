@@ -1,5 +1,5 @@
 from random import random
-
+from math import exp
 
 def aprox_sum(g, N, niter=100):
     """Aproximate the sum of g(i) for i in the interval [1, N].
@@ -28,4 +28,11 @@ def aprox_sum(g, N, niter=100):
 
 
 if __name__ == '__main__':
-    pass
+    N = 10000
+    def g(i): return exp(i / N)
+
+    print("\nMonte Carlo. N = 10000, niter = 100")
+    print(aprox_sum(g, N))
+
+    print("\nMonte Carlo. Real Value")
+    print(aprox_sum(g, N, N))
