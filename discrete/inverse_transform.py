@@ -36,4 +36,14 @@ def sort_by_probability(p, x):
 
 
 if __name__ == '__main__':
-    pass
+    def mean(g, N=10000):
+        return sum([g() for _ in range(N)]) / N
+
+    p = [0.1, 0.2, 0.3, 0.4]
+    x = [1, 2, 3, 4]
+
+    p, x = sort_by_probability(p, x)
+
+    print("Inverse transform mean of:")
+    print("x: {} \np: {}".format(x, p))
+    print(mean(lambda: inverse_transform(p, x)))
