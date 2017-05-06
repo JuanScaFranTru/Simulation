@@ -28,3 +28,7 @@ def accept_and_reject(Y_random, c, p, q):
         if U < p(Y) / c * p(Y):
             break
     return Y
+
+
+if __name__ == '__main__':
+    pass

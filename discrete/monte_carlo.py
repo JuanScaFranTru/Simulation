@@ -25,3 +25,7 @@ def aprox_sum(g, N, niter=100):
 
     S = S * N / niter
     return S
+
+
+if __name__ == '__main__':
+    pass

@@ -33,3 +33,7 @@ def sort_by_probability(p, x):
     x = sorted(x, key=lambda x: inv_x[x], reverse=True)
     p = sorted(p, reverse=True)
     return p, x
+
+
+if __name__ == '__main__':
+    pass

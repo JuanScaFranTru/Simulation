@@ -29,3 +29,7 @@ def random_subset(r, A):
         i = int(j * random())
         A[j], A[i] = A[i], A[j]
     return A[:r]  # Return the subset
+
+
+if __name__ == '__main__':
+    pass
