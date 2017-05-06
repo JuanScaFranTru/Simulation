@@ -29,6 +29,7 @@ def aprox_sum(g, N, niter=100):
 
 if __name__ == '__main__':
     N = 10000
+
     def g(i): return exp(i / N)
 
     print("\nMonte Carlo. N = 10000, niter = 100")
