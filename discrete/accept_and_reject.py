@@ -1,5 +1,4 @@
 from random import random
-from inverse_transform import sort_by_probability
 from discretes import uniform_discrete
 
 
