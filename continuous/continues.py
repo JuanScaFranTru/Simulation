@@ -1,5 +1,5 @@
 from random import random
-from math import exp, log
+from math import exp, log, pi, sqrt, sin, cos
 
 
 def nroot(n):
@@ -78,3 +78,41 @@ def nExponentials(lam, n):
     Vs.sort()
     result = [t * (Vs[i] - Vs[i - 1]) for i in range(1, n - 2)]
     return [t * Vs[0]] + result + [t - t * Vs[n - 2]]
+
+
+def normal(mu, sigma):
+    """
+    Si queremos generar una X ~ N(mu, sigma), podemos deciel que si
+    Z ~ N(0,1), entonces:
+
+                    X = sigma * Z + mu ~ N(mu, sigma)
+
+    Como la funcion de dencidad de Z es par, se puede generar |Z| y luego usar
+    un método de composición:
+
+                    Fz(x) = 0.5 * F_|z|(x) + 0.5 * F_(-|z|)(x)
+
+    Se utiliza el método de rechazo con una exponencial para generar Z.
+    """
+    while True:
+        # Generamos la Z
+        Y1 = -log(random())
+        Y2 = - log(random())
+        if Y2 >= ((Y1 - 1) ** 2) / 2:
+            break
+    # usamos la Z para calcular la Normal
+    if random() < 0.5:
+        return Y1 * sigma + mu
+    else:
+        return - Y1 * sigma + mu
+
+
+def stdnormal_polar():
+    """
+    Genera dos variables normales estándar.
+    """
+    rcuad = - 2 * log(random())
+    theta = 2 * pi * random()
+    x = sqrt(rcuad) * cos(theta)
+    y = sqrt(rcuad) * sin(theta)
+    return (x,y)
