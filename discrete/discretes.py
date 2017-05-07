@@ -110,6 +110,7 @@ def poisson(lambda_):
 
     return i
 
+
 def poisson_acum(lam, j):
     """
     Probabilidad acumulada de la Poisson para int(lambda)
