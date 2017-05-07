@@ -34,10 +34,6 @@ def poisson_proc1(lam):
     return  n - 1
 
 
-def poisson_proc(lam, t):
-    pass
-
-
 def gamma(n, lam):
     """
     Una suma de n variables aleatorias exponenciales, independientes, con
@@ -60,3 +56,25 @@ def twoExponential(lam):
     X = t * random()
     y = t - X
     return (X, Y)
+
+
+def nExponentials(lam, n):
+    """
+    Para generar n exponenciales a partir de una X ~ Gamm(n, lambda) se
+    requiere calcular un único logaritmo y n - 1 uniformes adicionales:
+    V_1,..., V_(n-1).
+    En primer lugar se ordenan los valores de las Vi:
+                V_i_1 < ... < V_i_(n-1)
+    Si X = t, entonces el intervalo (0,t) se divide en n subintervalos no
+    superpuestos, de longitud:
+                t*V_i_q, ..., t * (V_i_(n-1) - V_i_(n-2)), t * (1 - V_i_(n-1))
+    """
+    Us = [random() for _ in range(n)]
+    X = sum([log(u) for u in Us])
+    t = (- 1 / lam) * X
+
+    Vs = [random() for _ in range(n - 1)]
+
+    Vs.sort()
+    result = [t * (Vs[i] - Vs[i - 1]) for i in range(1, n - 2)]
+    return [t * Vs[0]] + result + [t - t * Vs[n - 2]]
