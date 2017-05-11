@@ -31,7 +31,7 @@ def poisson_proc1(lam):
     while prod < bound:
         n += 1
         prod += random()
-    return  n - 1
+    return n - 1
 
 
 def gamma(n, lam):
@@ -54,7 +54,7 @@ def twoExponential(lam):
     """
     t = (-1 / lam) * log(random() * random())  # Valor de una Gamma(2, lambda)
     X = t * random()
-    y = t - X
+    Y = t - X
     return (X, Y)
 
 
@@ -115,4 +115,25 @@ def stdnormal_polar():
     theta = 2 * pi * random()
     x = sqrt(rcuad) * cos(theta)
     y = sqrt(rcuad) * sin(theta)
-    return (x,y)
+    return (x, y)
+
+
+def polar_optimized():
+    """
+    No da la media que debería. TODO
+    """
+    while True:
+        V1, V2 = random(), random()
+        S = V1 ** 2 + V2 ** 2
+        if S <= 1:
+            break
+    X = V1 * sqrt(-2 * log(S) / S)
+    Y = V2 * sqrt(-2 * log(S) / S)
+    return (X, Y)
+
+
+a = [list(polar_optimized()) for i in range(1000000)]
+b = []
+for i in a:
+    b += i
+print(sum(b) / 1000000)
