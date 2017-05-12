@@ -1,8 +1,10 @@
 from random import random
 
+
 def udiscreta(a, b):
     u = random()
     return int(u * (b - a + 1)) + a
+
 
 def experiment():
     """
@@ -25,6 +27,7 @@ def experiment():
 
     return iterations
 
+
 def ej3(n):
 
     for i in range(4):
@@ -38,5 +41,6 @@ def ej3(n):
         sigma = (mean2 - mean ** 2) ** (1/2)
         print("N = ", n, "Media = ", mean, "Desviación estandar =", sigma)
         n = n * 10
-        
+
+
 ej3(100)

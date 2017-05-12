@@ -1,5 +1,6 @@
 from random import random
 
+
 def udiscreta(a, b):
     u = random()
     return int(u * (b - a + 1)) + a
@@ -14,6 +15,7 @@ def permutations(array):
         array[j] = array[i]
         array[i] = tmp
     return array
+
 
 def experiment(n):
     """
@@ -30,12 +32,13 @@ def experiment(n):
     # Calculamos la cantidad de éxitos
     return sum(succeses)
 
+
 def ej_1(n):
 
     # Realizamos el experimento para n = 100, n veces y calculamos la media
     est_succeses = sum([experiment(n) for i in range(n)])
     est_mean = est_succeses / n
-    # Sólo con el fin de calcular la estimación de la varianza caculamos E[X**2]
+    # Sólo con el fin de calcular la estimación de la varianza caculamosE[X**2]
     est_succeses2 = sum([experiment(n) ** 2 for i in range(n)])
     est_mean2 = est_succeses2 / n
 
@@ -54,5 +57,6 @@ def ej_1(n):
     variance = mean2 - mean ** 2
 
     print("Varianza estimada =", est_variance, "Varianza real =", variance)
+
 
 ej_1(100)

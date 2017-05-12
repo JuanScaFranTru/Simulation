@@ -1,9 +1,11 @@
 from random import random
 from math import exp
 
+
 def udiscreta(a, b):
     u = random()
     return int(u * (b - a + 1)) + a
+
 
 def ej_2(n, k):
 
@@ -17,6 +19,7 @@ def ej_2(n, k):
     real_value = sum([exp(i / n) for i in range(n)])
 
     print("Estimation =", estimation, "Real Value =", real_value)
+
 
 # Es una buena estimación si nuestro k es igual a 100.
 ej_2(10000, 100)
