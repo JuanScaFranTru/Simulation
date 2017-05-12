@@ -1,6 +1,7 @@
 from random import random
 from pynverse import inversefunc
 
+
 def inverse_transform(F):
     """
     Se utiliza la propoción que dice:
@@ -10,5 +11,5 @@ def inverse_transform(F):
         Tiene distribución F.
     """
     U = random()
-    # G = inversefunc(F)
-    return G(U) # G = F ** (-1)
+    G = inversefunc(F)
+    return G(U)  # G = F ** (-1)
