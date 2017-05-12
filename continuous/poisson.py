@@ -1,5 +1,6 @@
-from random import random
+from collections import defaultdict
 from math import log
+from random import random
 from discrete.discretes import poisson_optimized
 
 
@@ -14,7 +15,8 @@ def homogeneous_poisson_events(T, lam):
     t = 0
     # Ocurrieron 0 eventos
     I = 0
-    S = [0] * 10
+    S = defaultdict(float)
+    S[I] = 0
     while True:
         U = random()
         # Si ya pasaron las T unidades de tiempo, terminamos
@@ -27,6 +29,7 @@ def homogeneous_poisson_events(T, lam):
         I += 1
         # En el momento t
         S[I] = t
+    return S
 
 
 def hom_poisson_alternative(T, lam):
@@ -44,12 +47,29 @@ def hom_poisson_alternative(T, lam):
     return arrive_times
 
 
-def non_homogeneous_poisson(lam):
+def non_homogeneous_poisson(T, lamt, lam):
     """
     Las propiedades que cumplen los procesos de poisson no homogéneos permiten
     deducir el siguiente algoritmo.
+    :param lamt: funcion de intencidad λ(t)
+    :param lam: intencidad λ tal que λ(t) <= λ
     """
-    pass
+    t = 0
+    I = 0
+    S = defaultdict(float)
+    while True:
+        U = random()
+        t -= - (1 / lam) * log(U)
+        # Si pasaron las T unidades de tiempo, frenar.
+        if t > T:
+            break
+        V = random()
+        # Ocurre un evento?
+        if V < (lamt(t) / lam):
+            I += 1
+            # El evento I-ésimo fué en el momento t
+            S[I] = t
+    return S
 
 
 def non_homogeneous_optimized(lam):
