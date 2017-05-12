@@ -94,13 +94,13 @@ def normal(mu, sigma):
 
     Se utiliza el método de rechazo con una exponencial para generar Z.
     """
-    while True:
+    Y1 = -log(random())
+    Y2 = - log(random())
+    while Y2 < ((Y1 - 1) ** 2) / 2:
         # Generamos la Z
         Y1 = -log(random())
         Y2 = - log(random())
-        if Y2 >= ((Y1 - 1) ** 2) / 2:
-            break
-    # usamos la Z para calcular la Normal
+    # usamos la Z para calcular la Normal con el método de composición
     if random() < 0.5:
         return Y1 * sigma + mu
     else:
