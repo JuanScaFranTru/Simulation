@@ -1,7 +1,42 @@
 from collections import defaultdict
-from math import log
+from math import log, exp
 from random import random
-from discrete.discretes import poisson_optimized
+
+
+def poisson_acum(lam, j):
+    """
+    Probabilidad acumulada de la Poisson para int(lambda)
+    """
+    prob = exp(- lam)
+    F = prob
+    for i in range(1, j + 1):
+        prob *= (lam / i)
+        F += prob
+    return prob, F
+
+
+def poisson_optimized(lam):
+    """
+    Función de distribucion de probabilidad de Poisson optimizada.
+    """
+    value = int(lam)
+    # Calculamos la F(I)
+    prob, F = poisson_acum(lam, value)
+    u = random()
+    if u >= F:
+        # Generar X haciendo búsqueda ascendente
+        while u >= F:
+            value += 1
+            prob *= lam / value
+            F += prob
+        return value - 1  # Devuelve el valor anterior
+    else:
+        # Generar X haciendo búsqueda descendente
+        while u < F:
+            F -= prob
+            prob *= value / lam
+            value -= 1
+        return value  # Ejecuta hasta el valor a generar
 
 
 def homogeneous_poisson_events(T, lam):
@@ -29,7 +64,7 @@ def homogeneous_poisson_events(T, lam):
         I += 1
         # En el momento t
         S[I] = t
-    return S
+    return I, S
 
 
 def hom_poisson_alternative(T, lam):
