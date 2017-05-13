@@ -2,14 +2,21 @@ from random import random
 from math import exp, log, pi, sqrt, sin, cos
 
 
-def nroot(n):
+def inverse_transform_nroot(n):
+    return (random()) ** (1/n)
+
+
+def reject_nroot(n):
     """
     Si se desea simular una va con distribución Fx(x) = x**n, en lugar de tomar
     una raíz n-ésima es conveniente generar n uniformes y tomar su máximo.
     """
-    maxm = 0
     maxm = max([random() for _ in range(n)])
     return maxm
+
+
+def another_nroot(n):
+    pass
 
 
 def exponential(lam):
