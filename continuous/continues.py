@@ -8,10 +8,7 @@ def nroot(n):
     una raíz n-ésima es conveniente generar n uniformes y tomar su máximo.
     """
     maxm = 0
-    for i in range(n):
-        U = random()
-        if maxm < U:
-            maxm = U
+    maxm = max((U for _ in range(n)))
     return maxm
 
 
