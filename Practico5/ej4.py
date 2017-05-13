@@ -1,6 +1,7 @@
 from random import random
 from math import log
 
+
 def exponential(lam):
     """
     Simulación de una va Exponencial con parámetro Lambda

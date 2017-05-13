@@ -1,5 +1,6 @@
 from random import random
 
+
 def composition(p, F):
     """Simulate variable X = sum([p[i]*F[i] for i in range(len(p))])
     This method is applied when the distribution function can be expressed as a
