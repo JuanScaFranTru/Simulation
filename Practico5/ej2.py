@@ -1,6 +1,6 @@
 from random import random
 from math import log
-import matplotlib.pyplot as plt
+
 
 def weibull(alpha, beta):
     """

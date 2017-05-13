@@ -1,5 +1,5 @@
 from random import random
-from math import sqrt
+
 
 def ej1():
     u = random()
