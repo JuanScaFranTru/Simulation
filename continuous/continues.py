@@ -132,6 +132,7 @@ def polar_optimized():
     Optimized Box Muller transform used
     """
     while True:
+        # Generamos randoms en el (-1, 1) (por el circulo unidad)
         V1, V2 = 2 * random() - 1, 2 * random() - 1
         S = V1 ** 2 + V2 ** 2
         if S <= 1:
