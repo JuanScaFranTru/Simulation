@@ -129,10 +129,10 @@ def stdnormal_polar():
 
 def polar_optimized():
     """
-    No da la media que debería. TODO
+    Optimized Box Muller transform used
     """
     while True:
-        V1, V2 = random(), random()
+        V1, V2 = 2 * random() - 1, 2 * random() - 1
         S = V1 ** 2 + V2 ** 2
         if S <= 1:
             break
