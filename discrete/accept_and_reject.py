@@ -26,7 +26,7 @@ def accept_and_reject(Y_random, c, p, q):
     while True:
         Y = Y_random()
         U = random()
-        if U < p(Y) / (c * p(Y)):
+        if U < p(Y) / (c * q(Y)):
             break
     return Y
 
