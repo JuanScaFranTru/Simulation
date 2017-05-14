@@ -1,6 +1,7 @@
 from collections import defaultdict
 from math import log, exp
 from random import random
+from random import uniform
 
 
 def poisson_acum(lam, j):
@@ -75,7 +76,7 @@ def hom_poisson_alternative(T, lam):
     # Número de arribos hasta el tiempo T
     n = poisson_optimized(lam * T)
     # Dado N(T) la distribucion de los tiempos de arribo es uniforme en (0,T)
-    uniforms = [random(0, T) for _ in range(n)]
+    uniforms = [uniform(0, T) for _ in range(n)]
     uniforms.sort()
     arrive_times = [T * U for U in uniforms]
 
