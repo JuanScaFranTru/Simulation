@@ -3,7 +3,7 @@ from math import exp, log, pi, sqrt, sin, cos
 
 
 def inverse_transform_nroot(n):
-    return (random()) ** (1/n)
+    return random() ** (1/n)
 
 
 def reject_nroot(n):
@@ -16,7 +16,12 @@ def reject_nroot(n):
 
 
 def another_nroot(n):
-    pass
+    Y = random()
+    U = random()
+    while U >= Y**(n-1):
+        U = random()
+        Y = random()
+    return Y
 
 
 def exponential(lam):
