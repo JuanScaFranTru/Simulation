@@ -47,31 +47,18 @@ class Alias(object):
 
         for k in range(1, n):
             # Tomar el menor (j) y el mayor valor (i) en p
-            j, min_p = self.argmin(p)
-            i, max_p = self.argmax(p)
+            positive_p = [x for x in p if x > 0]
+
+            min_p = min(positive_p)
+            j = p.index(min_p)
+
+            max_p = max(positive_p)
+            i = p.index(max_p)
 
             self.Xs[k] = self.Bivalued(j, i, min_p)
 
             p[j] -= min_p
             p[i] -= 1 - min_p
-
-    def argmin(self, xs):
-        min_i = 0
-        min_x = xs[min_i]
-        for i in range(len(xs)):
-            if min_x > xs[i] and xs[i] > 0:
-                min_x = xs[i]
-                min_i = i
-        return min_i, min_x
-
-    def argmax(self, xs):
-        max_i = 0
-        max_x = xs[max_i]
-        for i in range(len(xs)):
-            if max_x < xs[i]:
-                max_x = xs[i]
-                max_i = i
-        return max_i, max_x
 
     def random(self):
         """Get a random number with distribution p.
