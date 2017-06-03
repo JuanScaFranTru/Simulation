@@ -28,9 +28,9 @@ def experiment(n):
     # Mezclamos el mazo
     deck = permutations(deck)
     # Vemos para cada extracción de carta si es un éxito o no
-    succeses = [1 for i in range(n) if deck[i] == i + 1]
+    succeses = sum([1 for i in range(n) if deck[i] == i + 1])
     # Calculamos la cantidad de éxitos
-    return sum(succeses)
+    return succeses
 
 
 def ej_1(n):

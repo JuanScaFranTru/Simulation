@@ -39,5 +39,5 @@ def experiment(T, func_lam, lam):
     print(times)
 
 
-lam = 4
+lam = 7
 experiment(10, func_lam, lam)
