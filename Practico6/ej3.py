@@ -1,4 +1,5 @@
 from random import uniform
+from math import sqrt
 
 
 def N():
@@ -19,7 +20,7 @@ def mean_estimation(nsimulation):
         mean += (X - mean) / data_len
         if var != 0:
             var *= 1 - 1 / (data_len - 1)
-        var += data_len * (mean - old_mean)
+        var += data_len * (mean - old_mean) ** 2
         # Or (is much better the aproximation, tradeoff with time)
         # var += float(data_len * (mean - old_mean)) ** 2
     return (mean, var, data_len)
@@ -29,9 +30,11 @@ def simulation():
     n = 1000
 
     mean, var, data_len = mean_estimation(n)
+    interval = (mean - 1.96 * sqrt(var / n), mean + 1.96 * sqrt(var / n))
 
     print("Mean = ", mean, "\nVariance = ", var, "\nStd Desv = ", var ** (1/2),
           "\nGenerated Values = ", data_len)
+    print("Intervalo:", interval)
 
 
 simulation()
