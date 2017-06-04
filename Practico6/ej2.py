@@ -1,5 +1,5 @@
 from random import random
-from math import exp
+from math import exp, sqrt
 
 
 def mean_estimation(min_simlation, accept_value):
@@ -8,7 +8,7 @@ def mean_estimation(min_simlation, accept_value):
     data_len = 0
     while data_len < min_simlation or var > accept_value:
         # Or (is much better the aproximation, tradeoff with time)
-        # while data_len < min_simlation or (var / data_len) > accept_value:
+        # wile data_len < min_simlation or sqrt(var / data_len) > accept_value:
         data_len += 1
         X = exp(random() ** 2)
         old_mean = mean
